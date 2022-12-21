@@ -12,6 +12,8 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js"
 import {register} from "./controllers/auth.js";
+import {createPost} from "./contollers/posts";
+import { verifyToken } from "./middlewear/auth.js";
 
 /*CONFIGURATIONS*/ 
 // to use modules
@@ -46,11 +48,12 @@ const upload = multer({storage})
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", uplaod.single("picture"), register); 
+app.post("/post", verifyToken, upload.single("picture"), createPost); // to create post
 
 /* ROUTES  */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
-app.use("/post", postRoutes);
+app.use("/post", postRoutes); // to get post
 
 /*MONGOOSE SETUP*/
 const PORT = process.env.PORT || 6001;
