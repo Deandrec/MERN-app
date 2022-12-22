@@ -1,5 +1,3 @@
-// path stars from source file 
-
 {
     "compilerOptions": {
         "baseUrl": "src",
@@ -7,3 +5,5 @@
     },
     "include": ["src"]
 }
+
+// path stars from source file
