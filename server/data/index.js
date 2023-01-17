@@ -33,7 +33,7 @@ export const users = [
     firstName: "Steve",
     lastName: "Ralph",
     email: "thataaa@gmail.com",
-    password: "$!FEAS@!O)_IDJda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
+    password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picturePath: "p3.jpeg",
     friends: [],
     location: "New York, CA",

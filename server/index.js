@@ -16,7 +16,7 @@ import {createPost} from "./contollers/posts.js";
 import { verifyToken } from "./middlewear/auth.js";
 import User from "./models/User.js";
 import Post from "./models/Posts.js";
-import {users, posts} from "./data/index.js"
+import { users, posts } from "./data/index.js";
 
 /*CONFIGURATIONS*/ 
 // to use modules
@@ -51,12 +51,12 @@ const upload = multer({storage})
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", upload.single("picture"), register); 
-app.post("/post", verifyToken, upload.single("picture"), createPost); // to create post
+app.post("/posts", verifyToken, upload.single("picture"), createPost); // to create post
 
 /* ROUTES  */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
-app.use("/post", postRoutes); // to get post
+app.use("/posts", postRoutes); // to get post
 
 /*MONGOOSE SETUP*/
 const PORT = process.env.PORT || 6001;
@@ -67,8 +67,8 @@ mongoose.connect(process.env.MONGO_URL,{
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
     /* ADD DATA ONE TIME */
-    // User.insertMany(users);
-    // Post.insertMany(posts)
+    //  User.insertMany(users);
+    //  Post.insertMany(posts);
 }).catch((error)=> console.log(`${error} did not connect`))
 
 

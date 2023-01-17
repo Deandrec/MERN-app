@@ -5,8 +5,8 @@ import { verifyToken } from "../middlewear/auth.js";
 const router = express.Router();
 
 /* READ */
-router.use("/", verifyToken, getFeedPosts);
-router.use("/:userId/posts", verifyToken, getUserPosts)
+router.get("/", verifyToken, getFeedPosts);
+router.get("/:userId/posts", verifyToken, getUserPosts);
 
 /* UPDATE */
 router.patch("/:id/like", verifyToken, likePost);

@@ -30,9 +30,9 @@ const registerSchema = yup.object().shape({
 const loginSchema = yup.object().shape({
   email: yup.string().email("invalid email").required("required"),
   password: yup.string().required("required"),
-})
+});
 
-const initalValuesRegister = {
+const initialValuesRegister = {
   firstName: "",
   lastName: "",
   email: "",
@@ -40,32 +40,31 @@ const initalValuesRegister = {
   location: "",
   occupation: "",
   picture: "",
-}
+};
 
-const initalValuesLogin = {
+const initialValuesLogin = {
   email: "",
   password: "",
-}
+};
 
 const Form = () =>{
   const [pageType, setPageType] = useState("login");
-  const {palette} = useTheme();
+  const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
-  const register = async (values, onSubmitProps)=>{
+  const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
     const formData = new FormData();
-
-    for(let value in values){
+    for (let value in values) {
       formData.append(value, values[value]);
     }
     formData.append("picturePath", values.picture.name);
 
-    //send to backend
+    // send to backend
     const savedUserResponse = await fetch(
       "http://localhost:3001/auth/register",
       {
@@ -73,13 +72,13 @@ const Form = () =>{
         body: formData,
       }
     );
-    const savedUser = await savedUserResponse.json;
+    const savedUser = await savedUserResponse.json();
     onSubmitProps.resetForm();
 
-    if(savedUser){
-      setPageType("login")
+    if (savedUser) {
+      setPageType("login");
     }
-  }
+  };
 
   const login = async (values, onSubmitProps) => {
     const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
@@ -108,7 +107,7 @@ const Form = () =>{
   return(
     <Formik
       onSubmit={handleFormSubmit}
-      initialValues={isLogin ? initalValuesLogin : initalValuesRegister}
+      initialValues={isLogin ? initialValuesLogin  : initialValuesRegister}
       validationSchema={isLogin ? loginSchema: registerSchema}
     >
       {({
